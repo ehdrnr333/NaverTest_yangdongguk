@@ -1,5 +1,6 @@
 import java.io.BufferedReader;
 import java.io.FileReader;
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.Map;
@@ -7,11 +8,8 @@ import java.util.Map;
 public class Main {
 	public static void main(String[] args) {
 		for (int i = 1; i <= 11; ++i) {
-			// txt file read
-			LinkedList<String> inputList = listFromTxt("Vote_testcase/" + i + ".input.txt");
+			// output txt file read and print
 			LinkedList<String> outputList = listFromTxt("Vote_testcase/" + i + ".output.txt");
-
-			// print txt file answer
 			System.out.println("Case " + i + ".");
 			System.out.print("output : ");
 			for (int j = 0; j < outputList.size(); ++j) {
@@ -19,46 +17,64 @@ public class Main {
 			}
 			System.out.println();
 
-			// solve case
+			// input txt file read and solve problem
 			long start = System.currentTimeMillis();
-			LinkedList<String> result = voteResult(inputList);
+			HashMap<String, Integer> inputHashMap = hashmapFromTxt("Vote_testcase/" + i + ".input.txt");
+			LinkedList<String> result = voteResult(inputHashMap);
 			long end = System.currentTimeMillis();
 			double response_time = (end - start) / 1000.0;
 
 			// print result
 			System.out.print("result : ");
-			for (int j = 0; j < result.size(); ++j) {
+			for (int j = 0; j < result.size(); ++j)
 				System.out.print(result.get(j) + " ");
-			}
 			System.out.println();
 			System.out.println("Response Time : " + response_time);
 		}
 	}
 
-	public static LinkedList<String> voteResult(LinkedList<String> list) {
-		HashMap<String, Integer> nameCount = new HashMap<String, Integer>();
-		for (int i = 0; i < list.size(); ++i) {
-			String name = list.get(i);
-			if (nameCount.containsKey(name)) {
-				nameCount.put(name, nameCount.get(name) + 1);
-			} else {
-				nameCount.put(name, 1);
-			}
-		}
-
+	private static LinkedList<String> voteResult(HashMap<String, Integer> inputHashMap) {
 		int max = 0;
-		LinkedList<String> answer = null;
-		for (Map.Entry<String, Integer> entry : nameCount.entrySet()) {
+		LinkedList<String> answer = new LinkedList<String>();
+		for (Map.Entry<String, Integer> entry : inputHashMap.entrySet()) {
 			int value = entry.getValue();
 			if (value > max) {
-				answer = new LinkedList<String>();
+				answer.clear();
 				answer.add(entry.getKey());
 				max = value;
 			} else if (value == max) {
 				answer.add(entry.getKey());
 			}
 		}
+		answer.sort(new Comparator<String>() {
+			@Override
+			public int compare(String o1, String o2) {
+				return o1.compareTo(o2);
+			}
+
+		});
 		return answer;
+	}
+
+	public static HashMap<String, Integer> hashmapFromTxt(String fileName) {
+		HashMap<String, Integer> hashMap = new HashMap<String, Integer>();
+		try {
+			BufferedReader br = new BufferedReader(new FileReader(fileName));
+			while (true) {
+				String line = br.readLine();
+				if (line == null)
+					break;
+				if (hashMap.containsKey(line)) {
+					hashMap.put(line, hashMap.get(line) + 1);
+				} else {
+					hashMap.put(line, 1);
+				}
+			}
+			br.close();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return hashMap;
 	}
 
 	public static LinkedList<String> listFromTxt(String fileName) {

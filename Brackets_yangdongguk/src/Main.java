@@ -1,5 +1,6 @@
 import java.io.BufferedReader;
 import java.io.FileReader;
+import java.util.HashMap;
 import java.util.LinkedList;
 
 public class Main {
@@ -7,11 +8,8 @@ public class Main {
 
 	public static void main(String[] args) {
 		for (int i = 1; i <= 10; ++i) {
-			// txt file read
-			LinkedList<String> inputList = listFromTxt("Brackets_testcase/" + i + ".input.txt");
+			// output txt file read and print
 			LinkedList<String> outputList = listFromTxt("Brackets_testcase/" + i + ".output.txt");
-
-			// print txt file answer
 			System.out.println("Case " + i + ".");
 			System.out.print("output : ");
 			for (int j = 0; j < outputList.size(); ++j) {
@@ -19,8 +17,9 @@ public class Main {
 			}
 			System.out.println();
 
-			// solve case
+			// input txt file read and solve problem
 			long start = System.currentTimeMillis();
+			LinkedList<String> inputList = listFromTxt("Brackets_testcase/" + i + ".input.txt");
 			LinkedList<Integer> result = new LinkedList<Integer>();
 			for (int j = 1; j < inputList.size(); ++j) {
 				result.add(bracketsResult(inputList.get(j)));
@@ -30,9 +29,8 @@ public class Main {
 
 			// print result
 			System.out.print("result : ");
-			for (int j = 0; j < result.size(); ++j) {
+			for (int j = 0; j < result.size(); ++j)
 				System.out.print(result.get(j) + " ");
-			}
 			System.out.println();
 			System.out.println("Response Time : " + response_time);
 		}
@@ -81,7 +79,7 @@ public class Main {
 				int lastVal = stairs.get(step - 1).pollLast();
 				if (lastVal != (b2 - 3))
 					return 0;
-				
+
 				int sum = 0;
 				for (int k = 0; k < stairs.get(step).size(); ++k) {
 					sum = (sum + stairs.get(step).get(k)) % LIMIT_NUM;

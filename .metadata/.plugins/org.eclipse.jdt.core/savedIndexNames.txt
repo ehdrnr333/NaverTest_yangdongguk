@@ -1,0 +1,3 @@
+INDEX VERSION 1.129+C:\Users\USER\Desktop\git\NaverTest_yangdongguk\.metadata\.plugins\org.eclipse.jdt.core
+62069104.index
+2353851267.index
