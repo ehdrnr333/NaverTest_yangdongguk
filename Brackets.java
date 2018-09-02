@@ -7,7 +7,7 @@ import java.util.LinkedList;
  * project name : Brackets_yangdongguk
  * author : Dongguk Yang
  * 
- * class Main
+ * class Brackets (Main class)
  * - int LIMIT_NUM : 연산 과정에서 정수 오버플로가 일어나지 않도록 %연산을 수행하기 위한 상수입니다.
  * 
  * - int tsNum(char brarcket) : 입력된 괄호 문자를 숫자로 변환하여 반환하는 함수입니다.
@@ -15,7 +15,7 @@ import java.util.LinkedList;
  * - LinkedList<String> listFromTxt(String fileName) : 텍스트 파일을 읽어서 LinkedList에 저장하여 반환합니다.
  */
 
-public class Main {
+public class Brackets {
 	public static final int LIMIT_NUM = 100000000;
 	public static void main(String[] args) {
 		// 테스트 케이스 1부터 10까지 진행합니다.

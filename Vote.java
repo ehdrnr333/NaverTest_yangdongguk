@@ -9,7 +9,7 @@ import java.util.Map;
  * project name : Vote_yangdongguk
  * author : Dongguk Yang
  * 
- * class Main
+ * class Vote (Main class)
  * 해당 문제를 두가지 방법으로 풀었습니다.
  * #1. HashMap을 이용한 방법입니다.
  * #2. TrieMap을 이용한 방법입니다.(직접 작성한 클래스)
@@ -18,7 +18,7 @@ import java.util.Map;
  * - LinkedList<String> solveFromHashMap(String fileName) : 파일을 읽고 HashMap에 저장하여 가장 많이 투표한 이름을 리스트로 반환합니다.
  */
 
-public class Main {
+public class Vote {
 	public static void main(String[] args) {
 		// 테스트 케이스 1부터 11까지 진행합니다.
 		for (int i = 1; i <= 11; ++i) {
@@ -146,9 +146,6 @@ public class Main {
 }
 
 /**
- * project name : Vote_yangdongguk
- * author : Dongguk Yang
- * 
  * class TrieMap
  * 자바에서 제공하는 해시맵을 사용하지 않고 문제를 해결하기 위해 만든 클래스입니다.
  * 기본 아이디어는 Trie 자료구조와 유사하게 문자에서 문자로 이어지는 트리형태로 구성했습니다.
